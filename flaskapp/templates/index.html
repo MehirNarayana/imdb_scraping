@@ -1,0 +1,63 @@
+
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+
+	<head>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script type=text/javascript>
+			$(document).ready(function() {
+			 $("#process_input").on('click', function() {
+					 $.ajax({
+							 url: "/index",
+							 method: "POST",
+							 data: {'number': $('input[id="number"].form-number').val()}
+							 contentType: 'application/json',
+							 success: function(data) {
+
+
+									 alert("done")
+									 document.getElementById("number_result").innerHTML = data.number_result;
+							 },
+							 error: function(xhr) {
+									 console.log(xhr);
+							 }
+					 });
+			 });
+	 });
+
+
+
+
+
+
+
+
+
+
+				});
+				return false;
+			  });
+			});
+		</script>
+	</head>
+
+
+{% block content %}
+<form class="form-number" method="POST" action="#">
+
+    {{ form.hidden_tag() }}
+    <h1{{ wtf.form_field(form.number) }}</h1>
+
+
+    <button class="btn btn-lg btn-primary btn-block" id="process_input" type="submit">Submit</button>
+  </form>
+
+
+  <p id=number_result </p>
+  <p id=name</p>
+  <p id=date</p>
+
+
+{% endblock %}
