@@ -3,9 +3,10 @@ from flask import Flask, redirect, url_for, render_template, request, jsonify
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField
 from wtforms.validators import InputRequired
-from flaskapp.scraping_script import all_movies
+
 from flaskapp.forms import *
 from flaskapp import app
+from flaskapp.scraping_script import Script
 import re
 import json
 
@@ -24,11 +25,17 @@ def index():
         get_data = request.form['number']
 
         number = int(get_data)
-        query = re.compile(r'\s*(\d+\.)\s+(.*)\s+(\(\d+\))')
-        formatted_result = query.search(all_movies[number-1])
-        number_result = formatted_result.group(1)
-        name = formatted_result.group(2)
-        date = formatted_result.group(3)
+
+        obj = Script(number)
+        obj.find_element()
+        get = obj.get_movie()
+        number_result = get[0]
+        name = get[1]
+        date = get[2]
+
+
+
+
 
         return jsonify({number_result: number_result})
 

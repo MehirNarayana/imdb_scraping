@@ -2,16 +2,28 @@ import re
 import requests
 from bs4 import BeautifulSoup
 import random
+import re
 
 
-data = requests.get('https://www.imdb.com/chart/top/')
+class Script:
+    def __init__(self, number):
+        self.data = requests.get('https://www.imdb.com/chart/top/')
+        self.soup =  soup = BeautifulSoup(self.data.text, 'html.parser')
+        self.all_movies = []
+        self.number = number
 
 
-soup = BeautifulSoup(data.text, 'html.parser')
+    def find_element(self):
+        for a in self.soup.find_all("td", class_="titleColumn"):
+            self.all_movies.append(a.text)
 
+    def get_movie(self):
 
-
-all_movies = []
-
-for a in soup.find_all("td", class_="titleColumn"):
-    all_movies.append(a.text)
+        query = re.compile(r'\s*(\d+\.)\s+(.*)\s+(\(\d+\))')
+        
+        formatted_result = query.search(self.all_movies[self.number-1])
+        number_result = formatted_result.group(1)
+        name = formatted_result.group(2)
+        date = formatted_result.group(3)
+        print(number_result, name, date)
+        return number_result, name, date
