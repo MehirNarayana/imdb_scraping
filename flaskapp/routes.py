@@ -12,7 +12,7 @@ import json
 
 
 
-@app.route("/index", methods=["POST", "GET"])
+@app.route("/", methods=["POST", "GET"])
 def index():
 
 
@@ -37,7 +37,7 @@ def index():
 
 
 
-        return jsonify({number_result: number_result})
+        return render_template('index.html', templates='templates', form=form, number_result=number_result, name=name, date=date)
 
     else:
-        return render_template('index.html', templates='templates', form=form)
+        return render_template('index.html', templates='templates', form=form, number_result='', name='', date='')
