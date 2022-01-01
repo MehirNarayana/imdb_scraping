@@ -1,6 +1,7 @@
 .tap{
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-
+  width: 25%;
+  height: 50%;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -8,5 +9,13 @@
   text-align: center;
   color: #333;
   background-color: #fff;
-  outline: 5px dotted green;
-}  
+
+}
+
+
+h1{
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+
+}

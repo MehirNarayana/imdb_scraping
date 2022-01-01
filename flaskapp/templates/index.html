@@ -17,8 +17,7 @@
 							 success: function(data) {
 
 
-									 alert("done")
-									 document.getElementById("number_result").innerHTML = data.number_result;
+
 							 },
 							 error: function(xhr) {
 									 console.log(xhr);
@@ -50,17 +49,18 @@
 {% endblock %}
 
 {% block content %}
+
+<h1>Imdb scraping</h1>
+
 <div class="tap">
 
-	<form class="form-number" method="POST" action="#">
+  <form class="form-number" method="POST" action="#">
 		<p> {{number_result}} </p>
 		<p> {{name}} </p>
 		<p> {{date}} </p>
-	    {{ form.hidden_tag() }}
-	    <h1{{ wtf.form_field(form.number, width="25%") }}</h1>
-
-		<button class="btn btn-lg btn-primary btn-block" id="process_input" type="submit">Submit</button>
-			
+		{{ form.hidden_tag() }}
+	  {{ wtf.form_field(form.number) }}
+		<button class="btn btn-lg btn-primary btn-blockid" id=process_input" type="submit">Submit</button>
 	</form>
 
 </div>

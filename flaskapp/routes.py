@@ -24,7 +24,12 @@ def index():
 
         get_data = request.form['number']
 
-        number = int(get_data)
+        try:
+            number = int(get_data)
+
+
+        except:
+            return render_template('index.html', templates='templates', form=form, number_result='Please enter a number', name='', date='')
 
         obj = Script(number)
         obj.find_element()
