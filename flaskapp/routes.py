@@ -26,14 +26,14 @@ def index():
 
         try:
             number = int(get_data)
-
+            obj = Script(number)
+            obj.find_element()
+            get = obj.get_movie()
 
         except:
-            return render_template('index.html', templates='templates', form=form, number_result='Please enter a number', name='', date='')
+            return render_template('index.html', templates='templates', form=form, number_result='You either entered a character that is not a number and/or entered a number that is not in between the range of 0-250', name='', date='')
 
-        obj = Script(number)
-        obj.find_element()
-        get = obj.get_movie()
+
         number_result = get[0]
         name = get[1]
         date = get[2]
