@@ -22,7 +22,7 @@ Cd into the root directory of the project
 
 Create a python virtual environment: py -3 -m venv env
 
-Activate the environment: flask_env\Scripts\activate
+Activate the environment: env\Scripts\activate
 
 Install required packages: pip install -r requirements.txt 
 
